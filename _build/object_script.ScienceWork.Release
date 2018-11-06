@@ -1,0 +1,14 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\qcustomplot.o
+./release\myfunction.o
+./release\point.o
+./release\points.o
+./release\content.o
+./release\nonparametric.o
+./release\genetic.o
+./release\geneticfornonparametric.o
+./release\moc_mainwindow.o
+./release\moc_qcustomplot.o
+);
