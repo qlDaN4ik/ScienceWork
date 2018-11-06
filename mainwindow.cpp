@@ -18,7 +18,7 @@ void MainWindow::on_pushButton_clicked()
 {
     //Выборка
     Points select;
-    fillSelectRand(select, 200, 2);
+    fillSelectRand(select, 300, 2);
 
     //Генетика + непараметрика
     NonParametric regression(select);
@@ -67,9 +67,18 @@ void MainWindow::on_pushButton_clicked()
         if(graph[i].getY(0) < minG.getY(0))
             minG = graph[i];
     }
-    ui->textEdit->insertPlainText("min Select: "+minS.toString()+"\nmax Select: "+maxS.toString()+"\nmin Graph: "+minG.toString()+"\nmax Graph: "+maxG.toString());
+    ui->textEdit->insertPlainText("min Select: " + minS.toString()+"\nmax Select: " + maxS.toString()
+                                  + "\nmin Graph: " + minG.toString() + "\nmax Graph: " + maxG.toString());
     //ui->textEdit->insertPlainText(graph.toString());
-    displayGraph(select, graph);
+    Points selectForGraph;
+    for(int i = 0; i < select.sizePoints(); ++i){
+        QVector <double> tempX;
+        tempX.push_back(select[i].getX(0));
+        tempX.push_back(0);
+        if(fabs(select[i].getY(0) - regression.getY(tempX)) <= 0.1)
+            selectForGraph.add(select[i]);
+    }
+    displayGraph(selectForGraph, graph);
 
 }
 
@@ -98,12 +107,12 @@ void MainWindow::displayGraph(Points select, Points graph)
         if (select[i].getX(0) > max)
             max = select[i].getX(0);
     }
-    QVector <double> X, Y;
+    QVector <double> funcX, funcY;
     for (int i = 0; i < 1000; ++i) {
-        X.push_back(min + i * ((max - min) / 1000));
-        Y.push_back(sin(X[i]));
+        funcX.push_back(min + i * ((max - min) / 1000));
+        funcY.push_back(sin(funcX[i]));
     }
-    ui->widget->graph(2)->setData(X, Y);
+    ui->widget->graph(2)->setData(funcX, funcY);
     ui->widget->graph(2)->setPen(QColor(0, 255, 0, 255));
     ui->widget->xAxis->setLabel("X");
     ui->widget->yAxis->setLabel("Y");
