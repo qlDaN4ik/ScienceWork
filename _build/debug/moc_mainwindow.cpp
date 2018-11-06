@@ -57,11 +57,11 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    2,   24,    2, 0x08 /* Private */,
-       4,    0,   29,    2, 0x08 /* Private */,
+       1,    3,   24,    2, 0x08 /* Private */,
+       4,    0,   31,    2, 0x08 /* Private */,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3,    2,    2,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3, 0x80000000 | 3,    2,    2,    2,
     QMetaType::Void,
 
        0        // eod
@@ -73,7 +73,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         MainWindow *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->displayGraph((*reinterpret_cast< Points(*)>(_a[1])),(*reinterpret_cast< Points(*)>(_a[2]))); break;
+        case 0: _t->displayGraph((*reinterpret_cast< Points(*)>(_a[1])),(*reinterpret_cast< Points(*)>(_a[2])),(*reinterpret_cast< Points(*)>(_a[3]))); break;
         case 1: _t->on_pushButton_clicked(); break;
         default: ;
         }

@@ -18,7 +18,7 @@ void MainWindow::on_pushButton_clicked()
 {
     //Выборка
     Points select;
-    fillSelectRand(select, 300, 2);
+    fillSelectRand(select, 1000, 2);
 
     //Генетика + непараметрика
     NonParametric regression(select);
@@ -78,11 +78,11 @@ void MainWindow::on_pushButton_clicked()
         if(fabs(select[i].getY(0) - regression.getY(tempX)) <= 0.1)
             selectForGraph.add(select[i]);
     }
-    displayGraph(selectForGraph, graph);
+    displayGraph(selectForGraph, select, graph);
 
 }
 
-void MainWindow::displayGraph(Points select, Points graph)
+void MainWindow::displayGraph(Points selectForGraph, Points select, Points graph)
 {
     ui->widget->legend->setVisible(true);
     ui->widget->setLocale(QLocale(QLocale::Russian, QLocale::Russia));
@@ -93,7 +93,7 @@ void MainWindow::displayGraph(Points select, Points graph)
     ui->widget->graph(0)->setData(graph.getVectorFirstX(), graph.getVectorFirstY());
     ui->widget->addGraph();
     ui->widget->graph(1)->setName("Значения выборки");
-    ui->widget->graph(1)->setData(select.getVectorFirstX(), select.getVectorFirstY());
+    ui->widget->graph(1)->setData(selectForGraph.getVectorFirstX(), selectForGraph.getVectorFirstY());
     ui->widget->graph(1)->setPen(QColor(255, 0, 0, 255));
     ui->widget->graph(1)->setLineStyle(QCPGraph::lsNone);
     ui->widget->graph(1)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, 4));
@@ -117,11 +117,11 @@ void MainWindow::displayGraph(Points select, Points graph)
     ui->widget->xAxis->setLabel("X");
     ui->widget->yAxis->setLabel("Y");
     ui->widget->xAxis->setRange(min - 0.1, max + 0.1);
-    min = select[0].getY(0);
-    max = select[0].getY(0);
-    for (int i = 1; i < select.sizePoints(); ++i) {
-        if (select[i].getY(0) < min) min = select[i].getY(0);
-        if (select[i].getY(0) > max) max = select[i].getY(0);
+    min = funcY[0];
+    max = funcY[0];
+    for (int i = 1; i < funcY.size(); ++i) {
+        if (funcY[i] < min) min = funcY[i];
+        if (funcY[i] > max) max = funcY[i];
     }
     ui->widget->yAxis->setRange(min - 0.1, max + 0.1);
     ui->widget->replot();

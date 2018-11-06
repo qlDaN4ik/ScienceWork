@@ -17,7 +17,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void displayGraph(Points, Points);
+    void displayGraph(Points, Points, Points);
     void on_pushButton_clicked();
 
 private:
