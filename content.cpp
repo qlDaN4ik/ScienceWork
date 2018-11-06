@@ -11,7 +11,7 @@ void fillSelectRand(Points &select, int number, int componentNumber)
         x.push_back(randomx);
         randomx = (double(rand() % 1000) / 1000.) * (b - a) + a;
         x.push_back(randomx);
-        y.push_back(sin(x[0] + x[1]) + double(rand() % 3 - 1) / 10);
+        y.push_back(sin(x[0] + x[1]) /*+ double(rand() % 3 - 1) / 10*/);
         select.add(x, y);
     }
 }
