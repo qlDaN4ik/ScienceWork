@@ -28,11 +28,31 @@ void fillGraph(NonParametric regression, Points &graph)
     }
 
     for (int i = 0; i < 1000; ++i) {
-        QVector<double> x;
-        QVector<double> y;
+        QVector <double> x;
+        QVector <double> y;
         x.push_back(minX + i * ((maxX - minX) / 1000));
         x.push_back(0);
         y.push_back(regression.getYwithExam(x));
         graph.add(x, y);
-    }    
+    }
+}
+
+QString readFile(QString filename)
+{
+    filename = QDir::toNativeSeparators(filename);
+    QFile file(filename);
+    QString line;
+    if(!file.exists()){
+        qDebug() << "Не существует " << filename;
+        return line;
+    } else {
+        qDebug() << filename << " загружается...";
+    }
+    if(file.open(QIODevice::ReadOnly|QIODevice::Text))
+        line=file.readAll();
+    file.close();
+    for (int i = 0; i < line.length(); ++i)
+        if(line[i]=='"')
+            line.remove(i,1);
+    return line;
 }

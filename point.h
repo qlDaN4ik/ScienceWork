@@ -14,6 +14,8 @@ public:
     QVector <double> getY();
     double getY(long index) const;
     void setY(long index, double value);
+    int sizeX();
+    int sizeY();
     QString toString();
 
 private:

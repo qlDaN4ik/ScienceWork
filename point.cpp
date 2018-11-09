@@ -42,6 +42,16 @@ void Point::setY(long index, double value)
         y[index] = value;
 }
 
+int Point::sizeX()
+{
+    return x.size();
+}
+
+int Point::sizeY()
+{
+    return y.size();
+}
+
 QString Point::toString()
 {
     QString S = "(";

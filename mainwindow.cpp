@@ -18,7 +18,33 @@ void MainWindow::on_pushButton_clicked()
 {
     //Выборка
     Points select;
-    fillSelectRand(select, 1000, 2);
+    if(!ui->checkBox->isChecked())
+        fillSelectRand(select, 1000, 2);
+    else {
+        openFile();
+        if (filename=="")
+            return ;
+        QString fileText=readFile(filename);
+        QTextStream fileStream(&fileText);
+        QString str = fileStream.readLine();
+        QStringList lst = str.split(";");
+        int sizeX = 0;
+        for (int i = 0; i < lst.size(); ++i)
+            if (lst.at(i).indexOf("X") >= 0)
+                ++sizeX;
+        while (!fileStream.atEnd()) {
+            str = fileStream.readLine();
+            lst = str.split(";");
+            QVector <double> x;
+            QVector <double> y;
+            for (int i = 1; i <= sizeX; ++i)
+                x.push_back(lst.at(i).toDouble());
+            for (int i = sizeX + 1; i < lst.size(); ++i)
+                y.push_back(lst.at(i).toDouble());
+            select.add(x, y);
+
+        }
+    }
 
     //Генетика + непараметрика
     NonParametric regression(select);
@@ -37,14 +63,15 @@ void MainWindow::on_pushButton_clicked()
     }
     regression.setBandwidth(genetic.getBest()[1]);
     ui->textEdit->insertPlainText("Bandwidth = "
-            + QString::number(genetic.getBest()[1])
+                                  + QString::number(genetic.getBest()[1])
             + "; Error = "
             + QString::number(-genetic.getBest()[0])
             +"\n");
     //График
     Points graph;
     fillGraph(regression, graph);
-    QVector <double> x, y;
+    QVector <double> x;
+    QVector <double> y;
     x.push_back(0);
     x.push_back(0);
     y.push_back(0);
@@ -125,4 +152,85 @@ void MainWindow::displayGraph(Points selectForGraph, Points select, Points graph
     }
     ui->widget->yAxis->setRange(min - 0.1, max + 0.1);
     ui->widget->replot();
+    //Таблица
+    QStandardItemModel *model = new QStandardItemModel;
+    QStandardItem *item;
+    QStringList horizontalHeader;
+    for (int i = 0; i < select[0].sizeX(); ++i)
+        horizontalHeader.append("X" + QString::number(i+1));
+    for (int i = 0; i < select[0].sizeY(); ++i)
+        horizontalHeader.append("Y" + QString::number(i+1));
+    QStringList verticalHeader;
+    for (int i = 0; i < select.sizePoints(); ++i)
+        verticalHeader.append(QString::number(i+1));
+    model->setHorizontalHeaderLabels(horizontalHeader);
+    model->setVerticalHeaderLabels(verticalHeader);
+    for (int i = 0; i < select.sizePoints(); ++i) {
+        for (int j = 0; j < select[0].sizeX(); ++j) {
+            item = new QStandardItem(QString::number(select[i].getX(j)));
+            model->setItem(i, j, item);
+        }
+        for (int j = 0; j < select[0].sizeY(); ++j) {
+            item = new QStandardItem(QString::number(select[i].getY(j)));
+            model->setItem(i, select[0].sizeX() + j, item);
+        }
+    }
+
+    ui->tableView->setModel(model);
+    ui->tableView->resizeRowsToContents();
+    ui->tableView->resizeColumnsToContents();
+    if(ui->checkBox_2->isChecked())
+        saveFileSelect();
+    if(ui->checkBox_3->isChecked())
+        saveFileGraph(graph);
+}
+
+void MainWindow::openFile()
+{
+    filename=QFileDialog::getOpenFileName(this, tr("Открыть файл"), "", tr("Text files (*.txt *.csv)"));
+}
+
+void MainWindow::saveFileSelect()
+{
+    QString filename=QFileDialog::getSaveFileName(this, tr("Сохранить файл"),"",tr("Excel file (*.csv);;Text file (*.txt)"));
+    QFile f(filename);
+
+    if( f.open( QIODevice::WriteOnly ) )
+    {
+        QTextStream ts( &f );
+        QStringList strList;
+
+        strList << "\" \"";
+        for ( int c = 0; c < ui->tableView->horizontalHeader()->count(); ++c )
+            strList << "\"" + ui->tableView->model()->headerData(c, Qt::Horizontal).toString() + "\"";
+        ts << strList.join( ";" )+"\n";
+
+        for ( int r = 0; r < ui->tableView->verticalHeader()->count(); ++r ) {
+            strList.clear();
+            strList << "\"" + ui->tableView->model()->headerData(r, Qt::Vertical).toString() + "\"";
+            for( int c = 0; c < ui->tableView->horizontalHeader()->count(); ++c )
+                strList << "\"" + ui->tableView->model()->data(ui->tableView->model()->index(r, c), Qt::DisplayRole).toString() + "\"";
+            ts << strList.join( ";" ) + "\n";
+        }
+        f.close();
+    }
+}
+
+void MainWindow::saveFileGraph(Points graph)
+{
+    QString filename=QFileDialog::getSaveFileName(this, tr("Сохранить файл"),"",tr("Excel file (*.csv);;Text file (*.txt)"));
+    QFile f(filename);
+
+    if( f.open( QIODevice::WriteOnly ) )
+    {
+        QTextStream ts( &f );
+        QStringList strList;
+
+        strList << "\" \"";
+        for( int c = 0; c < ui->tableView->horizontalHeader()->count(); ++c )
+            strList << "\"" + ui->tableView->model()->headerData(c, Qt::Horizontal).toString() + "\"";
+        ts << strList.join( ";" )+"\n";
+        ts << graph.toString();
+        f.close();
+    }
 }
