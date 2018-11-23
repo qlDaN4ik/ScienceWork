@@ -9,6 +9,8 @@ INPUT(
 ./release\nonparametric.o
 ./release\genetic.o
 ./release\geneticfornonparametric.o
+./release\base.o
 ./release\moc_mainwindow.o
 ./release\moc_qcustomplot.o
+./release\moc_base.o
 );

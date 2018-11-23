@@ -34,7 +34,8 @@ SOURCES += \
     content.cpp \
     nonparametric.cpp \
     genetic.cpp \
-    geneticfornonparametric.cpp
+    geneticfornonparametric.cpp \
+    base.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -45,7 +46,8 @@ HEADERS += \
     content.h \
     nonparametric.h \
     genetic.h \
-    geneticfornonparametric.h
+    geneticfornonparametric.h \
+    base.h
 
 FORMS += \
         mainwindow.ui
