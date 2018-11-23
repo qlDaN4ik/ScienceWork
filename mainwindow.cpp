@@ -31,14 +31,28 @@ void MainWindow::outResult(double bandwidth, double error)
 void MainWindow::outProgress(int percent)
 {
     ui->progressBar->setValue(percent);
-    //if(percent == 100)ui->genStart->setEnabled(1);
+    if (percent == 100)
+    {
+        ui->pushButton->setEnabled(1);
+        ui->currentRadio->setEnabled(1);
+        ui->fileRadio->setEnabled(1);
+        ui->randomRadio->setEnabled(1);
+        ui->componentNumberSpin->setEnabled(1);
+        ui->leftSearchSpin->setEnabled(1);
+        ui->rightSearchSpin->setEnabled(1);
+        ui->selectCountSpin->setEnabled(1);
+        ui->countGenerationSpin->setEnabled(1);
+        ui->individNumberSpin->setEnabled(1);
+        ui->geneNumberSpin->setEnabled(1);
+        ui->tournSizeSpin->setEnabled(1);
+        ui->mutationCombo->setEnabled(1);
+    }
 }
 
 void MainWindow::on_pushButton_clicked()
 {
     if (ui->fileRadio->isChecked())
         openFile();
-
     ui->progressBar->show();
     ui->progressBar->setValue(0);
     ui->pushButton->setEnabled(0);
@@ -70,6 +84,10 @@ void MainWindow::on_pushButton_clicked()
 
     connect(this, SIGNAL(inFilename(QString)), my, SLOT(outFilename(QString)), Qt::DirectConnection);
     emit inFilename(filename);
+
+    connect(this, SIGNAL(inPrevSelect(Points)), my, SLOT(outPrevSelect(Points)), Qt::DirectConnection);
+    if (ui->currentRadio->isChecked())
+        emit inPrevSelect(prevSelect);
 
     connect(this, SIGNAL(inRadio(bool, bool, bool)), my, SLOT(outRadio(bool, bool, bool)), Qt::DirectConnection);
     emit inRadio(ui->currentRadio->isChecked(), ui->randomRadio->isChecked(), ui->fileRadio->isChecked());
@@ -118,6 +136,8 @@ void MainWindow::outDisplayTable(Points select)
 
 void MainWindow::outDisplayGraph(Points selectForGraph, Points select, Points graph)
 {
+    prevSelect = select;
+    this->graph = graph;
     ui->widget->legend->setVisible(true);
     ui->widget->setLocale(QLocale(QLocale::Russian, QLocale::Russia));
     ui->widget->legend->setFont(QFont("Helvetica", 9));
@@ -159,25 +179,6 @@ void MainWindow::outDisplayGraph(Points selectForGraph, Points select, Points gr
     }
     ui->widget->yAxis->setRange(min - 0.1, max + 0.1);
     ui->widget->replot();
-
-    if(ui->checkBox_2->isChecked())
-        saveFileSelect();
-    if(ui->checkBox_3->isChecked())
-        saveFileGraph(graph);
-
-    ui->pushButton->setEnabled(1);
-    ui->currentRadio->setEnabled(1);
-    ui->fileRadio->setEnabled(1);
-    ui->randomRadio->setEnabled(1);
-    ui->componentNumberSpin->setEnabled(1);
-    ui->leftSearchSpin->setEnabled(1);
-    ui->rightSearchSpin->setEnabled(1);
-    ui->selectCountSpin->setEnabled(1);
-    ui->countGenerationSpin->setEnabled(1);
-    ui->individNumberSpin->setEnabled(1);
-    ui->geneNumberSpin->setEnabled(1);
-    ui->tournSizeSpin->setEnabled(1);
-    ui->mutationCombo->setEnabled(1);
 }
 
 void MainWindow::openFile()
@@ -254,4 +255,25 @@ void MainWindow::on_randomRadio_clicked()
     ui->selectCountSpin->show();
 }
 
+void MainWindow::on_selectSave_triggered()
+{
+    saveFileSelect();
+}
 
+void MainWindow::on_regressionSave_triggered()
+{
+    saveFileGraph(graph);
+}
+
+void MainWindow::on_setDefault_triggered()
+{
+    ui->componentNumberSpin->setValue(3);
+    ui->leftSearchSpin->setValue(0);
+    ui->rightSearchSpin->setValue(5);
+    ui->selectCountSpin->setValue(1000);
+    ui->countGenerationSpin->setValue(100);
+    ui->individNumberSpin->setValue(30);
+    ui->geneNumberSpin->setValue(20);
+    ui->tournSizeSpin->setValue(2);
+    ui->mutationCombo->setCurrentIndex(1);
+}

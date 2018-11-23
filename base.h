@@ -13,6 +13,7 @@ public slots:
     void doWork();
     void outRadio(bool current, bool random, bool file);
     void outFilename(QString filename);
+    void outPrevSelect(Points prevSelect);
     void outData(int componentNumber, int selectCount, int countGeneration, int individNumber, int geneNumber, int mut, int tournSize,
                  int leftSearch, int rightSearch);
 
@@ -23,6 +24,7 @@ signals:
     void inProgress(int percent);
 
 private:
+    Points prevSelect;
     QString name;
     QString filename;
     bool current;

@@ -17,6 +17,11 @@ void Base::outFilename(QString filename)
     this->filename = filename;
 }
 
+void Base::outPrevSelect(Points prevSelect)
+{
+    this->prevSelect = prevSelect;
+}
+
 void Base::outData (int componentNumber, int selectCount, int countGeneration, int individNumber,
                     int geneNumber, int mut, int tournSize, int leftSearch, int rightSearch)
 {
@@ -77,12 +82,12 @@ void Base::doWork()
         }
     }
     else if (current) {
-
+        select = prevSelect;
     }
     else if (random) {
         fillSelectRand(select, selectCount, componentNumber);
     }
-
+    prevSelect = select;
     emit inDisplayTable(select);
 
     //Генетика + непараметрика
@@ -101,8 +106,6 @@ void Base::doWork()
         emit inProgress((100 / countGeneration) * (k + 1));
     }
     regression.setBandwidth(genetic.getBest()[1]);
-    emit inProgress(100);
-    emit inResult(genetic.getBest()[1], -genetic.getBest()[0]);
     //График
     Points graph;
     fillGraph(regression, graph);
@@ -115,4 +118,7 @@ void Base::doWork()
             selectForGraph.add(select[i]);
     }
     emit inDisplayGraph(selectForGraph, select, graph);
+
+    emit inProgress(100);
+    emit inResult(genetic.getBest()[1], -genetic.getBest()[0]);
 }

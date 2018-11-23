@@ -27,19 +27,22 @@ private slots:
     void openFile();
     void saveFileSelect();
     void saveFileGraph(Points);
-
     void on_currentRadio_clicked();
-
     void on_randomRadio_clicked();
-
     void on_fileRadio_clicked();
+    void on_selectSave_triggered();
+    void on_regressionSave_triggered();
+    void on_setDefault_triggered();
 
 signals:
     void inRadio(bool current, bool random, bool file);
     void inFilename(QString filename);
+    void inPrevSelect(Points prevSelect);
     void inData(int componentNumber, int selectCount, int countGeneration, int individNumber, int geneNumber, int mut, int tournSize,
                 int leftSearch, int rightSearch);
 private:
+    Points prevSelect;
+    Points graph;
     QString filename;
     Ui::MainWindow *ui;
 };

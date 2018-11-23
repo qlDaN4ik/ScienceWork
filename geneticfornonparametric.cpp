@@ -35,7 +35,7 @@ void GeneticForNonParametric::fillRating()
     double h = (right - left) / pow(2, geneNumber);
     for (int i = 0; i < individNumber; ++i){
         rate = 0;
-        for (int j = 0; j < individNumber; ++j)
+        for (int j = 0; j < geneNumber; ++j)
             rate = rate * 2 + generation[i][j];
 
         bandwidth = left + rate * h;
