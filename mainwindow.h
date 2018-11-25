@@ -23,7 +23,8 @@ private slots:
     void outProgress(int percent);
     void outDisplayTable(Points select);
     void outDisplayGraph(Points selectForGraph, Points select, Points graph);
-    void on_pushButton_clicked();
+    void on_geneticButton_clicked();
+    void on_manuallyButton_clicked();
     void openFile();
     void saveFileSelect();
     void saveFileGraph(Points);
@@ -32,14 +33,17 @@ private slots:
     void on_fileRadio_clicked();
     void on_selectSave_triggered();
     void on_regressionSave_triggered();
-    void on_setDefault_triggered();
+    void on_setDefault_triggered();  
 
 signals:
     void inRadio(bool current, bool random, bool file);
     void inFilename(QString filename);
     void inPrevSelect(Points prevSelect);
-    void inData(int componentNumber, int selectCount, int countGeneration, int individNumber, int geneNumber, int mut, int tournSize,
+    void inGeneticData(int countGeneration, int individNumber, int geneNumber, int mut, int tournSize,
                 int leftSearch, int rightSearch);
+    void inSelectData(int componentNumber, int selectCount);
+    void inBandwidth(double bandwidth);
+
 private:
     Points prevSelect;
     Points graph;

@@ -10,12 +10,15 @@ public:
     Base(QString name);
 
 public slots:
-    void doWork();
+    void doGeneticWork();
+    void doManuallyWork();
     void outRadio(bool current, bool random, bool file);
     void outFilename(QString filename);
     void outPrevSelect(Points prevSelect);
-    void outData(int componentNumber, int selectCount, int countGeneration, int individNumber, int geneNumber, int mut, int tournSize,
+    void outGeneticData(int countGeneration, int individNumber, int geneNumber, int mut, int tournSize,
                  int leftSearch, int rightSearch);
+    void outSelectData(int componentNumber, int selectCount);
+    void outBandwidth(double bandwidth);
 
 signals:
     void inResult(double bandwidth, double error);
@@ -39,6 +42,7 @@ private:
     int tournSize;
     int leftSearch;
     int rightSearch;
+    double bandwidth;
 };
 
 #endif // BASE_H

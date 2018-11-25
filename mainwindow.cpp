@@ -26,62 +26,65 @@ void MainWindow::outResult(double bandwidth, double error)
                                   + "; Error = "
                                   + QString::number(error)
                                   +"\n");
+    ui->progressBar->hide();
+    ui->regressionSave->setEnabled(1);
+    ui->geneticButton->setEnabled(1);
+    ui->manuallyButton->setEnabled(1);
+    ui->currentRadio->setEnabled(1);
+    ui->fileRadio->setEnabled(1);
+    ui->randomRadio->setEnabled(1);
+    ui->componentNumberSpin->setEnabled(1);
+    ui->leftSearchSpin->setEnabled(1);
+    ui->rightSearchSpin->setEnabled(1);
+    ui->selectCountSpin->setEnabled(1);
+    ui->countGenerationSpin->setEnabled(1);
+    ui->individNumberSpin->setEnabled(1);
+    ui->geneNumberSpin->setEnabled(1);
+    ui->tournSizeSpin->setEnabled(1);
+    ui->mutationCombo->setEnabled(1);
+    ui->bandwidthSpin->setEnabled(1);
 }
 
 void MainWindow::outProgress(int percent)
 {
     ui->progressBar->setValue(percent);
-    if (percent == 100)
-    {
-        ui->regressionSave->setEnabled(1);
-        ui->pushButton->setEnabled(1);
-        ui->currentRadio->setEnabled(1);
-        ui->fileRadio->setEnabled(1);
-        ui->randomRadio->setEnabled(1);
-        ui->componentNumberSpin->setEnabled(1);
-        ui->leftSearchSpin->setEnabled(1);
-        ui->rightSearchSpin->setEnabled(1);
-        ui->selectCountSpin->setEnabled(1);
-        ui->countGenerationSpin->setEnabled(1);
-        ui->individNumberSpin->setEnabled(1);
-        ui->geneNumberSpin->setEnabled(1);
-        ui->tournSizeSpin->setEnabled(1);
-        ui->mutationCombo->setEnabled(1);
-    }
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_geneticButton_clicked()
 {
     if (ui->fileRadio->isChecked())
         openFile();
     ui->progressBar->show();
     ui->progressBar->setValue(0);
-    ui->pushButton->setEnabled(0);
+    ui->geneticButton->setEnabled(0);
     ui->currentRadio->setEnabled(0);
     ui->fileRadio->setEnabled(0);
     ui->randomRadio->setEnabled(0);
     ui->componentNumberSpin->setEnabled(0);
+    ui->selectCountSpin->setEnabled(0);
     ui->leftSearchSpin->setEnabled(0);
     ui->rightSearchSpin->setEnabled(0);
-    ui->selectCountSpin->setEnabled(0);
     ui->countGenerationSpin->setEnabled(0);
     ui->individNumberSpin->setEnabled(0);
     ui->geneNumberSpin->setEnabled(0);
     ui->tournSizeSpin->setEnabled(0);
     ui->mutationCombo->setEnabled(0);
+    ui->bandwidthSpin->setEnabled(0);
 
     QThread *thread= new QThread;
     Base *my = new Base("A");
     my->moveToThread(thread);
-    connect(thread, SIGNAL(started()), my, SLOT(doWork()));
+    connect(thread, SIGNAL(started()), my, SLOT(doGeneticWork()));
 
-    connect(this, SIGNAL(inData(int,int,int,int,int,int,int,int,int)),
-            my, SLOT(outData(int,int,int,int,int,int,int,int,int)), Qt::DirectConnection);
-    emit inData(ui->componentNumberSpin->text().toInt(), ui->selectCountSpin->text().toInt(),
-                ui->countGenerationSpin->text().toInt(), ui->individNumberSpin->text().toInt(),
-                ui->geneNumberSpin->text().toInt(), ui->mutationCombo->currentIndex(),
-                ui->tournSizeSpin->text().toInt(), ui->leftSearchSpin->text().toInt(),
-                ui->rightSearchSpin->text().toInt());
+    connect(this, SIGNAL(inGeneticData(int,int,int,int,int,int,int)),
+            my, SLOT(outGeneticData(int,int,int,int,int,int,int)), Qt::DirectConnection);
+    emit inGeneticData(ui->countGenerationSpin->value(), ui->individNumberSpin->value(),
+                ui->geneNumberSpin->value(), ui->mutationCombo->currentIndex(),
+                ui->tournSizeSpin->value(), ui->leftSearchSpin->value(),
+                ui->rightSearchSpin->value());
+
+    connect(this, SIGNAL(inSelectData(int,int)), my, SLOT(outSelectData(int,int)), Qt::DirectConnection);
+    emit inSelectData(ui->componentNumberSpin->value(), ui->selectCountSpin->value());
 
     connect(this, SIGNAL(inFilename(QString)), my, SLOT(outFilename(QString)), Qt::DirectConnection);
     emit inFilename(filename);
@@ -96,6 +99,57 @@ void MainWindow::on_pushButton_clicked()
     connect(my, SIGNAL(inResult(double, double)), this, SLOT(outResult(double, double)));
 
     connect(my, SIGNAL(inProgress(int)), this, SLOT(outProgress(int)));
+
+    connect(my, SIGNAL(inDisplayTable(Points)), this, SLOT(outDisplayTable(Points)));
+
+    connect(my, SIGNAL(inDisplayGraph(Points, Points, Points)), this, SLOT(outDisplayGraph(Points, Points, Points)));
+
+    thread->start();
+}
+
+void MainWindow::on_manuallyButton_clicked()
+{
+    if (ui->fileRadio->isChecked())
+        openFile();
+
+    ui->geneticButton->setEnabled(0);
+    ui->manuallyButton->setEnabled(0);
+    ui->currentRadio->setEnabled(0);
+    ui->fileRadio->setEnabled(0);
+    ui->randomRadio->setEnabled(0);
+    ui->componentNumberSpin->setEnabled(0);
+    ui->selectCountSpin->setEnabled(0);
+    ui->leftSearchSpin->setEnabled(0);
+    ui->rightSearchSpin->setEnabled(0);
+    ui->countGenerationSpin->setEnabled(0);
+    ui->individNumberSpin->setEnabled(0);
+    ui->geneNumberSpin->setEnabled(0);
+    ui->tournSizeSpin->setEnabled(0);
+    ui->mutationCombo->setEnabled(0);
+    ui->bandwidthSpin->setEnabled(0);
+
+    QThread *thread= new QThread;
+    Base *my = new Base("A");
+    my->moveToThread(thread);
+    connect(thread, SIGNAL(started()), my, SLOT(doManuallyWork()));
+
+    connect(this, SIGNAL(inSelectData(int,int)), my, SLOT(outSelectData(int,int)), Qt::DirectConnection);
+    emit inSelectData(ui->componentNumberSpin->value(), ui->selectCountSpin->value());
+
+    connect(this, SIGNAL(inFilename(QString)), my, SLOT(outFilename(QString)), Qt::DirectConnection);
+    emit inFilename(filename);
+
+    connect(this, SIGNAL(inPrevSelect(Points)), my, SLOT(outPrevSelect(Points)), Qt::DirectConnection);
+    if (ui->currentRadio->isChecked())
+        emit inPrevSelect(prevSelect);
+
+    connect(this, SIGNAL(inRadio(bool, bool, bool)), my, SLOT(outRadio(bool, bool, bool)), Qt::DirectConnection);
+    emit inRadio(ui->currentRadio->isChecked(), ui->randomRadio->isChecked(), ui->fileRadio->isChecked());
+
+    connect(this, SIGNAL(inBandwidth(double)), my, SLOT(outBandwidth(double)), Qt::DirectConnection);
+    emit inBandwidth(ui->bandwidthSpin->value());
+
+    connect(my, SIGNAL(inResult(double, double)), this, SLOT(outResult(double, double)));
 
     connect(my, SIGNAL(inDisplayTable(Points)), this, SLOT(outDisplayTable(Points)));
 
@@ -235,25 +289,25 @@ void MainWindow::saveFileGraph(Points graph)
 
 void MainWindow::on_currentRadio_clicked()
 {
-    ui->label_2->hide();
+    ui->componentNumberLabel->hide();
     ui->componentNumberSpin->hide();
-    ui->label_5->hide();
+    ui->selectCountLabel->hide();
     ui->selectCountSpin->hide();
 }
 
 void MainWindow::on_fileRadio_clicked()
 {
-    ui->label_2->hide();
+    ui->componentNumberLabel->hide();
     ui->componentNumberSpin->hide();
-    ui->label_5->hide();
+    ui->selectCountLabel->hide();
     ui->selectCountSpin->hide();
 }
 
 void MainWindow::on_randomRadio_clicked()
 {
-    ui->label_2->show();
+    ui->componentNumberLabel->show();
     ui->componentNumberSpin->show();
-    ui->label_5->show();
+    ui->selectCountLabel->show();
     ui->selectCountSpin->show();
 }
 
@@ -278,4 +332,5 @@ void MainWindow::on_setDefault_triggered()
     ui->geneNumberSpin->setValue(20);
     ui->tournSizeSpin->setValue(2);
     ui->mutationCombo->setCurrentIndex(1);
+    ui->bandwidthSpin->setValue(0.1);
 }
