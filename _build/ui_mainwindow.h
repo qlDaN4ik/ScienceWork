@@ -94,8 +94,10 @@ public:
         setDefault->setObjectName(QStringLiteral("setDefault"));
         selectSave = new QAction(MainWindow);
         selectSave->setObjectName(QStringLiteral("selectSave"));
+        selectSave->setEnabled(false);
         regressionSave = new QAction(MainWindow);
         regressionSave->setObjectName(QStringLiteral("regressionSave"));
+        regressionSave->setEnabled(false);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         textEdit = new QTextEdit(centralWidget);

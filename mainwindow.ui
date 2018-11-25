@@ -364,11 +364,17 @@
    </property>
   </action>
   <action name="selectSave">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Сохранить выборку...</string>
    </property>
   </action>
   <action name="regressionSave">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Сохранить регрессию...</string>
    </property>

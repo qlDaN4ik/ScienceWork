@@ -113,7 +113,7 @@ void Base::doWork()
     for (int i = 0; i < select.sizePoints(); ++i){
         QVector <double> tempX;
         tempX.push_back(select[i].getX(0));
-        tempX.push_back(0);
+        tempX.push_back(0.3);
         if(fabs(select[i].getY(0) - regression.getY(tempX)) <= 0.1)
             selectForGraph.add(select[i]);
     }

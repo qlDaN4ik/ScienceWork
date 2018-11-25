@@ -31,7 +31,7 @@ void fillGraph(NonParametric regression, Points &graph)
         QVector <double> x;
         QVector <double> y;
         x.push_back(minX + i * ((maxX - minX) / 1000));
-        x.push_back(0);
+        x.push_back(0.3);
         y.push_back(regression.getYwithExam(x));
         graph.add(x, y);
     }

@@ -33,6 +33,7 @@ void MainWindow::outProgress(int percent)
     ui->progressBar->setValue(percent);
     if (percent == 100)
     {
+        ui->regressionSave->setEnabled(1);
         ui->pushButton->setEnabled(1);
         ui->currentRadio->setEnabled(1);
         ui->fileRadio->setEnabled(1);
@@ -132,6 +133,7 @@ void MainWindow::outDisplayTable(Points select)
     ui->tableView->setModel(model);
     ui->tableView->resizeRowsToContents();
     ui->tableView->resizeColumnsToContents();
+    ui->selectSave->setEnabled(1);
 }
 
 void MainWindow::outDisplayGraph(Points selectForGraph, Points select, Points graph)
@@ -164,7 +166,7 @@ void MainWindow::outDisplayGraph(Points selectForGraph, Points select, Points gr
     QVector <double> funcX, funcY;
     for (int i = 0; i < 1000; ++i) {
         funcX.push_back(min + i * ((max - min) / 1000));
-        funcY.push_back(sin(funcX[i]) + 0);
+        funcY.push_back(sin(funcX[i] + 0.3));
     }
     ui->widget->graph(2)->setData(funcX, funcY);
     ui->widget->graph(2)->setPen(QColor(0, 255, 0, 255));
