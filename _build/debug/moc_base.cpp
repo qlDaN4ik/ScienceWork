@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Base_t {
-    QByteArrayData data[32];
-    char stringdata0[339];
+    QByteArrayData data[41];
+    char stringdata0[424];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,42 +38,54 @@ QT_MOC_LITERAL(3, 15, 9), // "bandwidth"
 QT_MOC_LITERAL(4, 25, 5), // "error"
 QT_MOC_LITERAL(5, 31, 14), // "inDisplayTable"
 QT_MOC_LITERAL(6, 46, 6), // "Points"
-QT_MOC_LITERAL(7, 53, 14), // "inDisplayGraph"
-QT_MOC_LITERAL(8, 68, 10), // "inProgress"
-QT_MOC_LITERAL(9, 79, 7), // "percent"
-QT_MOC_LITERAL(10, 87, 13), // "doGeneticWork"
-QT_MOC_LITERAL(11, 101, 14), // "doManuallyWork"
-QT_MOC_LITERAL(12, 116, 8), // "outRadio"
-QT_MOC_LITERAL(13, 125, 7), // "current"
-QT_MOC_LITERAL(14, 133, 6), // "random"
-QT_MOC_LITERAL(15, 140, 4), // "file"
-QT_MOC_LITERAL(16, 145, 11), // "outFilename"
-QT_MOC_LITERAL(17, 157, 8), // "filename"
-QT_MOC_LITERAL(18, 166, 13), // "outPrevSelect"
-QT_MOC_LITERAL(19, 180, 10), // "prevSelect"
-QT_MOC_LITERAL(20, 191, 14), // "outGeneticData"
-QT_MOC_LITERAL(21, 206, 15), // "countGeneration"
-QT_MOC_LITERAL(22, 222, 13), // "individNumber"
-QT_MOC_LITERAL(23, 236, 10), // "geneNumber"
-QT_MOC_LITERAL(24, 247, 3), // "mut"
-QT_MOC_LITERAL(25, 251, 9), // "tournSize"
-QT_MOC_LITERAL(26, 261, 10), // "leftSearch"
-QT_MOC_LITERAL(27, 272, 11), // "rightSearch"
-QT_MOC_LITERAL(28, 284, 13), // "outSelectData"
-QT_MOC_LITERAL(29, 298, 15), // "componentNumber"
-QT_MOC_LITERAL(30, 314, 11), // "selectCount"
-QT_MOC_LITERAL(31, 326, 12) // "outBandwidth"
+QT_MOC_LITERAL(7, 53, 6), // "select"
+QT_MOC_LITERAL(8, 60, 14), // "inDisplayGraph"
+QT_MOC_LITERAL(9, 75, 14), // "selectForGraph"
+QT_MOC_LITERAL(10, 90, 5), // "graph"
+QT_MOC_LITERAL(11, 96, 8), // "cutValue"
+QT_MOC_LITERAL(12, 105, 10), // "inProgress"
+QT_MOC_LITERAL(13, 116, 7), // "percent"
+QT_MOC_LITERAL(14, 124, 13), // "doGeneticWork"
+QT_MOC_LITERAL(15, 138, 14), // "doManuallyWork"
+QT_MOC_LITERAL(16, 153, 10), // "fillSelect"
+QT_MOC_LITERAL(17, 164, 7), // "Points&"
+QT_MOC_LITERAL(18, 172, 8), // "outRadio"
+QT_MOC_LITERAL(19, 181, 7), // "current"
+QT_MOC_LITERAL(20, 189, 6), // "random"
+QT_MOC_LITERAL(21, 196, 4), // "file"
+QT_MOC_LITERAL(22, 201, 11), // "outFilename"
+QT_MOC_LITERAL(23, 213, 8), // "filename"
+QT_MOC_LITERAL(24, 222, 13), // "outPrevSelect"
+QT_MOC_LITERAL(25, 236, 10), // "prevSelect"
+QT_MOC_LITERAL(26, 247, 14), // "outGeneticData"
+QT_MOC_LITERAL(27, 262, 15), // "countGeneration"
+QT_MOC_LITERAL(28, 278, 13), // "individNumber"
+QT_MOC_LITERAL(29, 292, 10), // "geneNumber"
+QT_MOC_LITERAL(30, 303, 3), // "mut"
+QT_MOC_LITERAL(31, 307, 9), // "tournSize"
+QT_MOC_LITERAL(32, 317, 10), // "leftSearch"
+QT_MOC_LITERAL(33, 328, 11), // "rightSearch"
+QT_MOC_LITERAL(34, 340, 13), // "outSelectData"
+QT_MOC_LITERAL(35, 354, 15), // "componentNumber"
+QT_MOC_LITERAL(36, 370, 11), // "selectCount"
+QT_MOC_LITERAL(37, 382, 10), // "leftSelect"
+QT_MOC_LITERAL(38, 393, 11), // "rightSelect"
+QT_MOC_LITERAL(39, 405, 5), // "noise"
+QT_MOC_LITERAL(40, 411, 12) // "outBandwidth"
 
     },
     "Base\0inResult\0\0bandwidth\0error\0"
-    "inDisplayTable\0Points\0inDisplayGraph\0"
-    "inProgress\0percent\0doGeneticWork\0"
-    "doManuallyWork\0outRadio\0current\0random\0"
-    "file\0outFilename\0filename\0outPrevSelect\0"
-    "prevSelect\0outGeneticData\0countGeneration\0"
+    "inDisplayTable\0Points\0select\0"
+    "inDisplayGraph\0selectForGraph\0graph\0"
+    "cutValue\0inProgress\0percent\0doGeneticWork\0"
+    "doManuallyWork\0fillSelect\0Points&\0"
+    "outRadio\0current\0random\0file\0outFilename\0"
+    "filename\0outPrevSelect\0prevSelect\0"
+    "outGeneticData\0countGeneration\0"
     "individNumber\0geneNumber\0mut\0tournSize\0"
     "leftSearch\0rightSearch\0outSelectData\0"
-    "componentNumber\0selectCount\0outBandwidth"
+    "componentNumber\0selectCount\0leftSelect\0"
+    "rightSelect\0noise\0outBandwidth"
 };
 #undef QT_MOC_LITERAL
 
@@ -83,7 +95,7 @@ static const uint qt_meta_data_Base[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -91,35 +103,37 @@ static const uint qt_meta_data_Base[] = {
        4,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    2,   74,    2, 0x06 /* Public */,
-       5,    1,   79,    2, 0x06 /* Public */,
-       7,    3,   82,    2, 0x06 /* Public */,
-       8,    1,   89,    2, 0x06 /* Public */,
+       1,    2,   79,    2, 0x06 /* Public */,
+       5,    1,   84,    2, 0x06 /* Public */,
+       8,    4,   87,    2, 0x06 /* Public */,
+      12,    1,   96,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      10,    0,   92,    2, 0x0a /* Public */,
-      11,    0,   93,    2, 0x0a /* Public */,
-      12,    3,   94,    2, 0x0a /* Public */,
+      14,    0,   99,    2, 0x0a /* Public */,
+      15,    0,  100,    2, 0x0a /* Public */,
       16,    1,  101,    2, 0x0a /* Public */,
-      18,    1,  104,    2, 0x0a /* Public */,
-      20,    7,  107,    2, 0x0a /* Public */,
-      28,    2,  122,    2, 0x0a /* Public */,
-      31,    1,  127,    2, 0x0a /* Public */,
+      18,    3,  104,    2, 0x0a /* Public */,
+      22,    1,  111,    2, 0x0a /* Public */,
+      24,    1,  114,    2, 0x0a /* Public */,
+      26,    7,  117,    2, 0x0a /* Public */,
+      34,    6,  132,    2, 0x0a /* Public */,
+      40,    1,  145,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Double, QMetaType::Double,    3,    4,
-    QMetaType::Void, 0x80000000 | 6,    2,
-    QMetaType::Void, 0x80000000 | 6, 0x80000000 | 6, 0x80000000 | 6,    2,    2,    2,
-    QMetaType::Void, QMetaType::Int,    9,
+    QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void, 0x80000000 | 6, 0x80000000 | 6, 0x80000000 | 6, QMetaType::Double,    9,    7,   10,   11,
+    QMetaType::Void, QMetaType::Int,   13,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool, QMetaType::Bool, QMetaType::Bool,   13,   14,   15,
-    QMetaType::Void, QMetaType::QString,   17,
-    QMetaType::Void, 0x80000000 | 6,   19,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int,   21,   22,   23,   24,   25,   26,   27,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,   29,   30,
+    QMetaType::Void, 0x80000000 | 17,    7,
+    QMetaType::Void, QMetaType::Bool, QMetaType::Bool, QMetaType::Bool,   19,   20,   21,
+    QMetaType::Void, QMetaType::QString,   23,
+    QMetaType::Void, 0x80000000 | 6,   25,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int,   27,   28,   29,   30,   31,   32,   33,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Bool, QMetaType::Double,   35,   36,   37,   38,   39,   11,
     QMetaType::Void, QMetaType::Double,    3,
 
        0        // eod
@@ -133,16 +147,17 @@ void Base::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         switch (_id) {
         case 0: _t->inResult((*reinterpret_cast< double(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2]))); break;
         case 1: _t->inDisplayTable((*reinterpret_cast< Points(*)>(_a[1]))); break;
-        case 2: _t->inDisplayGraph((*reinterpret_cast< Points(*)>(_a[1])),(*reinterpret_cast< Points(*)>(_a[2])),(*reinterpret_cast< Points(*)>(_a[3]))); break;
+        case 2: _t->inDisplayGraph((*reinterpret_cast< Points(*)>(_a[1])),(*reinterpret_cast< Points(*)>(_a[2])),(*reinterpret_cast< Points(*)>(_a[3])),(*reinterpret_cast< double(*)>(_a[4]))); break;
         case 3: _t->inProgress((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 4: _t->doGeneticWork(); break;
         case 5: _t->doManuallyWork(); break;
-        case 6: _t->outRadio((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3]))); break;
-        case 7: _t->outFilename((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 8: _t->outPrevSelect((*reinterpret_cast< Points(*)>(_a[1]))); break;
-        case 9: _t->outGeneticData((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4])),(*reinterpret_cast< int(*)>(_a[5])),(*reinterpret_cast< int(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7]))); break;
-        case 10: _t->outSelectData((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 11: _t->outBandwidth((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 6: _t->fillSelect((*reinterpret_cast< Points(*)>(_a[1]))); break;
+        case 7: _t->outRadio((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3]))); break;
+        case 8: _t->outFilename((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 9: _t->outPrevSelect((*reinterpret_cast< Points(*)>(_a[1]))); break;
+        case 10: _t->outGeneticData((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4])),(*reinterpret_cast< int(*)>(_a[5])),(*reinterpret_cast< int(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7]))); break;
+        case 11: _t->outSelectData((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4])),(*reinterpret_cast< bool(*)>(_a[5])),(*reinterpret_cast< double(*)>(_a[6]))); break;
+        case 12: _t->outBandwidth((*reinterpret_cast< double(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -162,7 +177,7 @@ void Base::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
             }
         }
         {
-            using _t = void (Base::*)(Points , Points , Points );
+            using _t = void (Base::*)(Points , Points , Points , double );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&Base::inDisplayGraph)) {
                 *result = 2;
                 return;
@@ -203,13 +218,13 @@ int Base::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 13;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 12)
+        if (_id < 13)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 12;
+        _id -= 13;
     }
     return _id;
 }
@@ -229,9 +244,9 @@ void Base::inDisplayTable(Points _t1)
 }
 
 // SIGNAL 2
-void Base::inDisplayGraph(Points _t1, Points _t2, Points _t3)
+void Base::inDisplayGraph(Points _t1, Points _t2, Points _t3, double _t4)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 

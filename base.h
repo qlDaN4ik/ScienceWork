@@ -12,18 +12,19 @@ public:
 public slots:
     void doGeneticWork();
     void doManuallyWork();
+    void fillSelect(Points &select);
     void outRadio(bool current, bool random, bool file);
     void outFilename(QString filename);
     void outPrevSelect(Points prevSelect);
     void outGeneticData(int countGeneration, int individNumber, int geneNumber, int mut, int tournSize,
                  int leftSearch, int rightSearch);
-    void outSelectData(int componentNumber, int selectCount);
+    void outSelectData(int componentNumber, int selectCount, int leftSelect, int rightSelect, bool noise, double cutValue);
     void outBandwidth(double bandwidth);
 
 signals:
     void inResult(double bandwidth, double error);
-    void inDisplayTable(Points);
-    void inDisplayGraph(Points, Points, Points);
+    void inDisplayTable(Points select);
+    void inDisplayGraph(Points selectForGraph, Points select, Points graph, double cutValue);
     void inProgress(int percent);
 
 private:
@@ -43,6 +44,10 @@ private:
     int leftSearch;
     int rightSearch;
     double bandwidth;
+    int leftSelect;
+    int rightSelect;
+    bool noise;
+    double cutValue;
 };
 
 #endif // BASE_H

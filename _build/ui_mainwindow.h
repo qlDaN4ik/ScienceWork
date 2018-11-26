@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QGridLayout>
@@ -80,22 +81,34 @@ public:
     QPushButton *manuallyButton;
     QCustomPlot *widget;
     QTableView *tableView;
+    QTextEdit *textEdit;
+    QProgressBar *progressBar;
     QWidget *widget_4;
     QVBoxLayout *verticalLayout_3;
     QWidget *widget_2;
     QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *label_5;
+    QDoubleSpinBox *cutValueSpin;
     QLabel *label;
     QRadioButton *currentRadio;
     QRadioButton *fileRadio;
     QRadioButton *randomRadio;
+    QWidget *selectionWidget;
+    QVBoxLayout *verticalLayout_7;
     QHBoxLayout *componentNumber;
     QLabel *componentNumberLabel;
     QSpinBox *componentNumberSpin;
     QHBoxLayout *horizontalLayout_10;
     QLabel *selectCountLabel;
     QSpinBox *selectCountSpin;
-    QTextEdit *textEdit;
-    QProgressBar *progressBar;
+    QHBoxLayout *horizontalLayout;
+    QLabel *label_2;
+    QSpinBox *leftSelectSpin;
+    QLabel *label_3;
+    QSpinBox *rightSelectSpin;
+    QHBoxLayout *horizontalLayout_2;
+    QCheckBox *noiseCheck;
     QMenuBar *menuBar;
     QMenu *menu;
     QMenu *menu_2;
@@ -329,24 +342,64 @@ public:
 
         gridLayout->addWidget(tableView, 0, 3, 2, 1);
 
-        widget_4 = new QWidget(centralWidget);
-        widget_4->setObjectName(QStringLiteral("widget_4"));
-        QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        textEdit = new QTextEdit(centralWidget);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
+        QSizePolicy sizePolicy3(QSizePolicy::Maximum, QSizePolicy::Maximum);
         sizePolicy3.setHorizontalStretch(0);
         sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(widget_4->sizePolicy().hasHeightForWidth());
-        widget_4->setSizePolicy(sizePolicy3);
-        widget_4->setMinimumSize(QSize(300, 180));
+        sizePolicy3.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
+        textEdit->setSizePolicy(sizePolicy3);
+
+        gridLayout->addWidget(textEdit, 2, 3, 2, 1);
+
+        progressBar = new QProgressBar(centralWidget);
+        progressBar->setObjectName(QStringLiteral("progressBar"));
+        QSizePolicy sizePolicy4(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(progressBar->sizePolicy().hasHeightForWidth());
+        progressBar->setSizePolicy(sizePolicy4);
+        progressBar->setMinimumSize(QSize(400, 0));
+        progressBar->setValue(0);
+
+        gridLayout->addWidget(progressBar, 3, 1, 1, 2);
+
+        widget_4 = new QWidget(centralWidget);
+        widget_4->setObjectName(QStringLiteral("widget_4"));
+        QSizePolicy sizePolicy5(QSizePolicy::Minimum, QSizePolicy::Expanding);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(widget_4->sizePolicy().hasHeightForWidth());
+        widget_4->setSizePolicy(sizePolicy5);
+        widget_4->setMinimumSize(QSize(300, 280));
         verticalLayout_3 = new QVBoxLayout(widget_4);
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         widget_2 = new QWidget(widget_4);
         widget_2->setObjectName(QStringLiteral("widget_2"));
+        widget_2->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         verticalLayout = new QVBoxLayout(widget_2);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        label_5 = new QLabel(widget_2);
+        label_5->setObjectName(QStringLiteral("label_5"));
+
+        horizontalLayout_4->addWidget(label_5);
+
+        cutValueSpin = new QDoubleSpinBox(widget_2);
+        cutValueSpin->setObjectName(QStringLiteral("cutValueSpin"));
+        cutValueSpin->setMinimum(-99);
+
+        horizontalLayout_4->addWidget(cutValueSpin);
+
+
+        verticalLayout->addLayout(horizontalLayout_4);
+
         label = new QLabel(widget_2);
         label->setObjectName(QStringLiteral("label"));
         QFont font;
@@ -378,32 +431,40 @@ public:
 
         verticalLayout_3->addWidget(widget_2);
 
+        selectionWidget = new QWidget(widget_4);
+        selectionWidget->setObjectName(QStringLiteral("selectionWidget"));
+        selectionWidget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        verticalLayout_7 = new QVBoxLayout(selectionWidget);
+        verticalLayout_7->setSpacing(6);
+        verticalLayout_7->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
         componentNumber = new QHBoxLayout();
         componentNumber->setSpacing(6);
         componentNumber->setObjectName(QStringLiteral("componentNumber"));
-        componentNumberLabel = new QLabel(widget_4);
+        componentNumberLabel = new QLabel(selectionWidget);
         componentNumberLabel->setObjectName(QStringLiteral("componentNumberLabel"));
 
         componentNumber->addWidget(componentNumberLabel);
 
-        componentNumberSpin = new QSpinBox(widget_4);
+        componentNumberSpin = new QSpinBox(selectionWidget);
         componentNumberSpin->setObjectName(QStringLiteral("componentNumberSpin"));
+        componentNumberSpin->setMinimum(2);
         componentNumberSpin->setValue(3);
 
         componentNumber->addWidget(componentNumberSpin);
 
 
-        verticalLayout_3->addLayout(componentNumber);
+        verticalLayout_7->addLayout(componentNumber);
 
         horizontalLayout_10 = new QHBoxLayout();
         horizontalLayout_10->setSpacing(6);
         horizontalLayout_10->setObjectName(QStringLiteral("horizontalLayout_10"));
-        selectCountLabel = new QLabel(widget_4);
+        selectCountLabel = new QLabel(selectionWidget);
         selectCountLabel->setObjectName(QStringLiteral("selectCountLabel"));
 
         horizontalLayout_10->addWidget(selectCountLabel);
 
-        selectCountSpin = new QSpinBox(widget_4);
+        selectCountSpin = new QSpinBox(selectionWidget);
         selectCountSpin->setObjectName(QStringLiteral("selectCountSpin"));
         selectCountSpin->setMaximum(10000);
         selectCountSpin->setValue(1000);
@@ -411,26 +472,53 @@ public:
         horizontalLayout_10->addWidget(selectCountSpin);
 
 
-        verticalLayout_3->addLayout(horizontalLayout_10);
+        verticalLayout_7->addLayout(horizontalLayout_10);
+
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        label_2 = new QLabel(selectionWidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        horizontalLayout->addWidget(label_2);
+
+        leftSelectSpin = new QSpinBox(selectionWidget);
+        leftSelectSpin->setObjectName(QStringLiteral("leftSelectSpin"));
+        leftSelectSpin->setMinimum(-99);
+        leftSelectSpin->setValue(-5);
+
+        horizontalLayout->addWidget(leftSelectSpin);
+
+        label_3 = new QLabel(selectionWidget);
+        label_3->setObjectName(QStringLiteral("label_3"));
+
+        horizontalLayout->addWidget(label_3);
+
+        rightSelectSpin = new QSpinBox(selectionWidget);
+        rightSelectSpin->setObjectName(QStringLiteral("rightSelectSpin"));
+        rightSelectSpin->setValue(5);
+
+        horizontalLayout->addWidget(rightSelectSpin);
+
+
+        verticalLayout_7->addLayout(horizontalLayout);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        noiseCheck = new QCheckBox(selectionWidget);
+        noiseCheck->setObjectName(QStringLiteral("noiseCheck"));
+
+        horizontalLayout_2->addWidget(noiseCheck);
+
+
+        verticalLayout_7->addLayout(horizontalLayout_2);
+
+
+        verticalLayout_3->addWidget(selectionWidget);
 
 
         gridLayout->addWidget(widget_4, 1, 0, 2, 1);
-
-        textEdit = new QTextEdit(centralWidget);
-        textEdit->setObjectName(QStringLiteral("textEdit"));
-        QSizePolicy sizePolicy4(QSizePolicy::Maximum, QSizePolicy::Maximum);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
-        textEdit->setSizePolicy(sizePolicy4);
-
-        gridLayout->addWidget(textEdit, 2, 3, 2, 1);
-
-        progressBar = new QProgressBar(centralWidget);
-        progressBar->setObjectName(QStringLiteral("progressBar"));
-        progressBar->setValue(0);
-
-        gridLayout->addWidget(progressBar, 3, 1, 1, 2);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -485,12 +573,16 @@ public:
         label_13->setText(QApplication::translate("MainWindow", "\320\232\320\276\321\215\321\204\321\204\320\270\321\206\320\270\320\265\320\275\321\202 \321\200\320\260\320\267\320\274\321\213\321\202\320\276\321\201\321\202\320\270", nullptr));
         manuallyButton->setText(QApplication::translate("MainWindow", "GO", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "\320\240\321\203\321\207\320\275\320\260\321\217 \320\275\320\260\321\201\321\202\321\200\320\276\320\271\320\272\320\260", nullptr));
+        label_5->setText(QApplication::translate("MainWindow", "\320\237\320\276\321\201\321\202\321\200\320\276\320\270\321\202\321\214 \321\201\321\200\320\265\320\267 \321\201 X =", nullptr));
         label->setText(QApplication::translate("MainWindow", "\320\222\320\267\321\217\321\202\321\214 \320\262\321\213\320\261\320\276\321\200\320\272\321\203:", nullptr));
         currentRadio->setText(QApplication::translate("MainWindow", "\321\202\320\265\320\272\321\203\321\211\321\203\321\216", nullptr));
         fileRadio->setText(QApplication::translate("MainWindow", "\320\270\320\267 \321\204\320\260\320\271\320\273\320\260", nullptr));
         randomRadio->setText(QApplication::translate("MainWindow", "\321\201\320\273\321\203\321\207\320\260\320\271\320\275\321\203\321\216", nullptr));
         componentNumberLabel->setText(QApplication::translate("MainWindow", "\320\232\320\276\320\273-\320\262\320\276 \320\270\320\267\320\274\320\265\321\200\320\265\320\275\320\270\320\271:", nullptr));
         selectCountLabel->setText(QApplication::translate("MainWindow", "\320\232\320\276\320\273-\320\262\320\276 \321\202\320\276\321\207\320\265\320\272 \320\262\321\213\320\261\320\276\321\200\320\272\320\270:", nullptr));
+        label_2->setText(QApplication::translate("MainWindow", "\320\224\320\270\320\260\320\277\320\260\320\267\320\276\320\275 \320\276\321\202", nullptr));
+        label_3->setText(QApplication::translate("MainWindow", "\320\264\320\276", nullptr));
+        noiseCheck->setText(QApplication::translate("MainWindow", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214 \320\277\320\276\320\274\320\265\321\205\321\203", nullptr));
         menu->setTitle(QApplication::translate("MainWindow", "\320\244\320\260\320\271\320\273", nullptr));
         menu_2->setTitle(QApplication::translate("MainWindow", "\320\237\320\260\321\200\320\260\320\274\320\265\321\202\321\200\321\213", nullptr));
     } // retranslateUi

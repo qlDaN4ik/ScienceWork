@@ -22,7 +22,7 @@ private slots:
     void outResult(double bandwidth, double error);
     void outProgress(int percent);
     void outDisplayTable(Points select);
-    void outDisplayGraph(Points selectForGraph, Points select, Points graph);
+    void outDisplayGraph(Points selectForGraph, Points select, Points graph, double cutValue);
     void on_geneticButton_clicked();
     void on_manuallyButton_clicked();
     void openFile();
@@ -41,7 +41,7 @@ signals:
     void inPrevSelect(Points prevSelect);
     void inGeneticData(int countGeneration, int individNumber, int geneNumber, int mut, int tournSize,
                 int leftSearch, int rightSearch);
-    void inSelectData(int componentNumber, int selectCount);
+    void inSelectData(int componentNumber, int selectCount, int leftSelect, int rightSelect, bool noise, double cutValue);
     void inBandwidth(double bandwidth);
 
 private:

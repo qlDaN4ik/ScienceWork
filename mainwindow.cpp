@@ -57,6 +57,7 @@ void MainWindow::on_geneticButton_clicked()
     ui->progressBar->show();
     ui->progressBar->setValue(0);
     ui->geneticButton->setEnabled(0);
+    ui->manuallyButton->setEnabled(0);
     ui->currentRadio->setEnabled(0);
     ui->fileRadio->setEnabled(0);
     ui->randomRadio->setEnabled(0);
@@ -83,8 +84,10 @@ void MainWindow::on_geneticButton_clicked()
                 ui->tournSizeSpin->value(), ui->leftSearchSpin->value(),
                 ui->rightSearchSpin->value());
 
-    connect(this, SIGNAL(inSelectData(int,int)), my, SLOT(outSelectData(int,int)), Qt::DirectConnection);
-    emit inSelectData(ui->componentNumberSpin->value(), ui->selectCountSpin->value());
+    connect(this, SIGNAL(inSelectData(int, int, int, int, bool, double)), my,
+            SLOT(outSelectData(int, int, int, int, bool, double)), Qt::DirectConnection);
+    emit inSelectData(ui->componentNumberSpin->value(), ui->selectCountSpin->value(), ui->leftSelectSpin->value(),
+                      ui->rightSelectSpin->value(), ui->noiseCheck->isChecked(), ui->cutValueSpin->value());
 
     connect(this, SIGNAL(inFilename(QString)), my, SLOT(outFilename(QString)), Qt::DirectConnection);
     emit inFilename(filename);
@@ -102,7 +105,8 @@ void MainWindow::on_geneticButton_clicked()
 
     connect(my, SIGNAL(inDisplayTable(Points)), this, SLOT(outDisplayTable(Points)));
 
-    connect(my, SIGNAL(inDisplayGraph(Points, Points, Points)), this, SLOT(outDisplayGraph(Points, Points, Points)));
+    connect(my, SIGNAL(inDisplayGraph(Points, Points, Points, double)), this,
+            SLOT(outDisplayGraph(Points, Points, Points, double)));
 
     thread->start();
 }
@@ -133,8 +137,10 @@ void MainWindow::on_manuallyButton_clicked()
     my->moveToThread(thread);
     connect(thread, SIGNAL(started()), my, SLOT(doManuallyWork()));
 
-    connect(this, SIGNAL(inSelectData(int,int)), my, SLOT(outSelectData(int,int)), Qt::DirectConnection);
-    emit inSelectData(ui->componentNumberSpin->value(), ui->selectCountSpin->value());
+    connect(this, SIGNAL(inSelectData(int, int, int, int, bool, double)), my,
+            SLOT(outSelectData(int, int, int, int, bool, double)), Qt::DirectConnection);
+    emit inSelectData(ui->componentNumberSpin->value(), ui->selectCountSpin->value(), ui->leftSelectSpin->value(),
+                      ui->rightSelectSpin->value(), ui->noiseCheck->isChecked(), ui->cutValueSpin->value());
 
     connect(this, SIGNAL(inFilename(QString)), my, SLOT(outFilename(QString)), Qt::DirectConnection);
     emit inFilename(filename);
@@ -153,7 +159,8 @@ void MainWindow::on_manuallyButton_clicked()
 
     connect(my, SIGNAL(inDisplayTable(Points)), this, SLOT(outDisplayTable(Points)));
 
-    connect(my, SIGNAL(inDisplayGraph(Points, Points, Points)), this, SLOT(outDisplayGraph(Points, Points, Points)));
+    connect(my, SIGNAL(inDisplayGraph(Points, Points, Points, double)), this,
+            SLOT(outDisplayGraph(Points, Points, Points, double)));
 
     thread->start();
 }
@@ -190,7 +197,7 @@ void MainWindow::outDisplayTable(Points select)
     ui->selectSave->setEnabled(1);
 }
 
-void MainWindow::outDisplayGraph(Points selectForGraph, Points select, Points graph)
+void MainWindow::outDisplayGraph(Points selectForGraph, Points select, Points graph, double cutValue)
 {
     prevSelect = select;
     this->graph = graph;
@@ -220,7 +227,7 @@ void MainWindow::outDisplayGraph(Points selectForGraph, Points select, Points gr
     QVector <double> funcX, funcY;
     for (int i = 0; i < 1000; ++i) {
         funcX.push_back(min + i * ((max - min) / 1000));
-        funcY.push_back(sin(funcX[i] + 0.3));
+        funcY.push_back(sin(funcX[i] + cutValue));
     }
     ui->widget->graph(2)->setData(funcX, funcY);
     ui->widget->graph(2)->setPen(QColor(0, 255, 0, 255));
@@ -289,26 +296,17 @@ void MainWindow::saveFileGraph(Points graph)
 
 void MainWindow::on_currentRadio_clicked()
 {
-    ui->componentNumberLabel->hide();
-    ui->componentNumberSpin->hide();
-    ui->selectCountLabel->hide();
-    ui->selectCountSpin->hide();
+    ui->selectionWidget->hide();
 }
 
 void MainWindow::on_fileRadio_clicked()
 {
-    ui->componentNumberLabel->hide();
-    ui->componentNumberSpin->hide();
-    ui->selectCountLabel->hide();
-    ui->selectCountSpin->hide();
+    ui->selectionWidget->hide();
 }
 
 void MainWindow::on_randomRadio_clicked()
 {
-    ui->componentNumberLabel->show();
-    ui->componentNumberSpin->show();
-    ui->selectCountLabel->show();
-    ui->selectCountSpin->show();
+    ui->selectionWidget->show();
 }
 
 void MainWindow::on_selectSave_triggered()
@@ -333,4 +331,8 @@ void MainWindow::on_setDefault_triggered()
     ui->tournSizeSpin->setValue(2);
     ui->mutationCombo->setCurrentIndex(1);
     ui->bandwidthSpin->setValue(0.1);
+    ui->leftSelectSpin->setValue(-5);
+    ui->rightSelectSpin->setValue(5);
+    ui->noiseCheck->setChecked(0);
+    ui->cutValueSpin->setValue(0);
 }

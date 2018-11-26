@@ -6,7 +6,7 @@
 #include <QDir>
 #include <QDebug>
 
-void fillSelectRand(Points &, int, int);
-void fillGraph(NonParametric, Points &);
-QString readFile(QString);
+void fillSelectRand(Points &select, int selectCount, int componentNumber, int leftSelect, int rightSelect, bool noise);
+void fillGraph(NonParametric regression, Points &graph, double cutValue);
+QString readFile(QString filename);
 #endif // CONTENT_H

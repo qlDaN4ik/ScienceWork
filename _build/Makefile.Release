@@ -1148,6 +1148,9 @@ release/mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtGui/QStandardItem \
 		ui_mainwindow.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtCore/QVariant \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QAction \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qaction.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qactiongroup.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QApplication \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qapplication.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtCore/qcoreapplication.h \
@@ -1155,15 +1158,8 @@ release/mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qdesktopwidget.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtGui/qguiapplication.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtGui/qinputmethod.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QCheckBox \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qcheckbox.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qabstractbutton.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QHeaderView \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qheaderview.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qabstractitemview.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qframe.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QComboBox \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qcombobox.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qstyleoption.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qabstractspinbox.h \
@@ -1174,15 +1170,37 @@ release/mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qstyle.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qtabbar.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qrubberband.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qframe.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QDoubleSpinBox \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qspinbox.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QGridLayout \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qgridlayout.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qlayout.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qlayoutitem.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qboxlayout.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QHBoxLayout \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QHeaderView \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qheaderview.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QLabel \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qlabel.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QMenu \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qmenu.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QMenuBar \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qmenubar.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qmenu.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qaction.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qactiongroup.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QProgressBar \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qprogressbar.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QPushButton \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qabstractbutton.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QRadioButton \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qradiobutton.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QSpinBox \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QStatusBar \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qstatusbar.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QTabWidget \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QTableView \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qtableview.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QTextEdit \
@@ -1194,6 +1212,7 @@ release/mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtGui/qpen.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QToolBar \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qtoolbar.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QVBoxLayout \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QWidget \
 		../qcustomplot.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtCore/QPointer \
@@ -1425,17 +1444,13 @@ release/mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QtWidgets \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QtWidgetsDepends \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qaccessiblewidget.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qboxlayout.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qlayout.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qlayoutitem.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qgridlayout.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qbuttongroup.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qcalendarwidget.h \
+		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qcheckbox.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qcolordialog.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qdialog.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qcolormap.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qcolumnview.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qcombobox.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qcommandlinkbutton.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qcommonstyle.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qcompleter.h \
@@ -1480,7 +1495,6 @@ release/mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qitemeditorfactory.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qkeyeventtransition.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qkeysequenceedit.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qlabel.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qlcdnumber.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qlistview.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qlistwidget.h \
@@ -1490,11 +1504,9 @@ release/mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qmouseeventtransition.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qopenglwidget.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qplaintextedit.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qprogressbar.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qprogressdialog.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qproxystyle.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/QCommonStyle \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qradiobutton.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qscrollbar.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qscroller.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtCore/QPointF \
@@ -1503,7 +1515,6 @@ release/mainwindow.o: ../mainwindow.cpp ../mainwindow.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtCore/QMetaType \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qshortcut.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qsizegrip.h \
-		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qspinbox.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qsplashscreen.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qsplitter.h \
 		../../../../Programs/Qt/5.11.2/mingw53_32/include/QtWidgets/qstackedlayout.h \

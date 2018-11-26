@@ -47,10 +47,14 @@ void Base::outGeneticData (int countGeneration, int individNumber, int geneNumbe
     }
 }
 
-void Base::outSelectData(int componentNumber, int selectCount)
+void Base::outSelectData(int componentNumber, int selectCount, int leftSelect, int rightSelect, bool noise, double cutValue)
 {
     this->componentNumber = componentNumber;
     this->selectCount = selectCount;
+    this->leftSelect = leftSelect;
+    this->rightSelect = rightSelect;
+    this->noise = noise;
+    this->cutValue = cutValue;
 }
 
 void Base::outBandwidth(double bandwidth)
@@ -58,13 +62,8 @@ void Base::outBandwidth(double bandwidth)
     this->bandwidth = bandwidth;
 }
 
-void Base::doGeneticWork()
+void Base::fillSelect(Points &select)
 {
-    srand( time(nullptr));
-    qRegisterMetaType<Points>("Points");
-
-    //Выборка
-    Points select;
     if(file)
     {
         if (filename == "")
@@ -94,9 +93,19 @@ void Base::doGeneticWork()
         select = prevSelect;
     }
     else if (random) {
-        fillSelectRand(select, selectCount, componentNumber);
+        fillSelectRand(select, selectCount, componentNumber, leftSelect, rightSelect, noise);
     }
     prevSelect = select;
+}
+
+void Base::doGeneticWork()
+{
+    srand( time(nullptr));
+    qRegisterMetaType<Points>("Points");
+
+    //Выборка
+    Points select;
+    fillSelect(select);
     emit inDisplayTable(select);
 
     //Генетика + непараметрика
@@ -117,16 +126,13 @@ void Base::doGeneticWork()
     regression.setBandwidth(genetic.getBest()[1]);
     //График
     Points graph;
-    fillGraph(regression, graph);
+    fillGraph(regression, graph, cutValue);
     Points selectForGraph;
     for (int i = 0; i < select.sizePoints(); ++i){
-        QVector <double> tempX;
-        tempX.push_back(select[i].getX(0));
-        tempX.push_back(0.3);
-        if(fabs(select[i].getY(0) - regression.getY(tempX)) <= 0.1)
+        if(fabs(select[i].getX(1) - cutValue) <= 0.1)
             selectForGraph.add(select[i]);
     }
-    emit inDisplayGraph(selectForGraph, select, graph);
+    emit inDisplayGraph(selectForGraph, select, graph, cutValue);
 
     emit inProgress(100);
     emit inResult(genetic.getBest()[1], -genetic.getBest()[0]);
@@ -139,38 +145,7 @@ void Base::doManuallyWork()
 
     //Выборка
     Points select;
-    if(file)
-    {
-        if (filename == "")
-            return ;
-        QString fileText=readFile(filename);
-        QTextStream fileStream(&fileText);
-        QString str = fileStream.readLine();
-        QStringList lst = str.split(";");
-        int sizeX = 0;
-        for (int i = 0; i < lst.size(); ++i)
-            if (lst.at(i).indexOf("X") >= 0)
-                ++sizeX;
-        while (!fileStream.atEnd()) {
-            str = fileStream.readLine();
-            lst = str.split(";");
-            QVector <double> x;
-            QVector <double> y;
-            for (int i = 1; i <= sizeX; ++i)
-                x.push_back(lst.at(i).toDouble());
-            for (int i = sizeX + 1; i < lst.size(); ++i)
-                y.push_back(lst.at(i).toDouble());
-            select.add(x, y);
-
-        }
-    }
-    else if (current) {
-        select = prevSelect;
-    }
-    else if (random) {
-        fillSelectRand(select, selectCount, componentNumber);
-    }
-    prevSelect = select;
+    fillSelect(select);
     emit inDisplayTable(select);
 
     //Непараметрика
@@ -179,16 +154,13 @@ void Base::doManuallyWork()
 
     //График
     Points graph;
-    fillGraph(regression, graph);
+    fillGraph(regression, graph, cutValue);
     Points selectForGraph;
     for (int i = 0; i < select.sizePoints(); ++i){
-        QVector <double> tempX;
-        tempX.push_back(select[i].getX(0));
-        tempX.push_back(0.3);
-        if(fabs(select[i].getY(0) - regression.getY(tempX)) <= 0.1)
+        if(fabs(select[i].getX(1) - cutValue) <= 0.1)
             selectForGraph.add(select[i]);
     }
-    emit inDisplayGraph(selectForGraph, select, graph);
+    emit inDisplayGraph(selectForGraph, select, graph, cutValue);
 
     emit inResult(bandwidth, regression.error());
 }
